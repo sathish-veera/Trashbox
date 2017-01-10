@@ -4,7 +4,7 @@ class CreateTrashRequests < ActiveRecord::Migration[5.0]
       t.string :tr_serial_no
       t.string :request_status
       t.date :trash_request_date
-      t.date_time :request_generate_date
+      t.datetime :request_generate_date
       t.decimal :total_amount
 
       t.timestamps

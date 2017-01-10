@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170110032345) do
+ActiveRecord::Schema.define(version: 20170110035208) do
 
   create_table "address_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "addressable_id"
@@ -49,13 +49,13 @@ ActiveRecord::Schema.define(version: 20170110032345) do
   end
 
   create_table "trash_requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.integer  "user_id"
-    t.string   "rg_no"
+    t.string   "tr_serial_no"
     t.string   "request_status"
-    t.datetime "request_date"
-    t.decimal  "total_amount",   precision: 10
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.date     "trash_request_date"
+    t.datetime "request_generate_date"
+    t.decimal  "total_amount",          precision: 10
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
