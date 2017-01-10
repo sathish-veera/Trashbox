@@ -6,6 +6,8 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <nav class="navbar navbar navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -44,11 +46,6 @@
         <% if user_signed_in? %>
           <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-              <% if user_signed_in? %>
-                <li class="active">
-                  <a href="">Social Sites</a>
-                </li>
-              <% end %>
               <% if user_signed_in? %>
                 <li>
                   <%= link_to 'Items', items_path, method: :get %>

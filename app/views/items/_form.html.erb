@@ -11,22 +11,20 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :item_code %>
-    <%= f.text_field :item_code %>
+  <div class="form-group"">
+    <%= f.text_field :item_code, placeholder: "Item Code", class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :item_name %>
-    <%= f.text_field :item_name %>
+  <div class="form-group"">
+    <%= f.text_field :item_name, placeholder: "Item Name", class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :unit_price %>
-    <%= f.text_field :unit_price %>
+  <div class="form-group"">
+    <%= f.text_field :unit_price, placeholder: "Unit Price", class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group"">
+    <%= f.submit "Submit",:class => "btn btn-success btn" %>
+    <%= link_to 'Back', items_path, class: 'btn btn-danger' %>
   </div>
 <% end %>

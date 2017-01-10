@@ -11,32 +11,36 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :tr_serial_no %>
-    <%= f.text_field :tr_serial_no %>
+  <div class="form-group">
+    <%= f.text_field :tr_serial_no, class: "form-control", placeholder: "Tr Serial No" %>
   </div>
 
-  <div class="field">
-    <%= f.label :request_status %>
-    <%= f.text_field :request_status %>
+  <div class="form-group">
+    <%= f.text_field :request_status, class: "form-control", placeholder: "Request Status" %>
   </div>
 
-  <div class="field">
-    <%= f.label :trash_request_date %>
-    <%= f.date_select :trash_request_date %>
+  <div class='input-group date' id='datetimepicker8'>
+    <%= f.text_field :trash_request_date, :class => "form-control", :placeholder => "Trash Request Date" %>
+    <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span>
+  </div>
+  </br>
+
+  <div class="form-group">
+    <%= f.text_field :request_generate_date, class: "form-control", placeholder: "Request Generate Date" %>
   </div>
 
-  <div class="field">
-    <%= f.label :request_generate_date %>
-    <%= f.text_field :request_generate_date %>
+  <div class="form-group">
+    <%= f.text_field :total_amount, class: "form-control", placeholder: "Total Amount" %>
   </div>
 
-  <div class="field">
-    <%= f.label :total_amount %>
-    <%= f.text_field :total_amount %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.submit "Submit",:class => "btn btn-success btn" %>
   </div>
 <% end %>
+<script>
+  $(function() {
+      $('#datetimepicker8').datetimepicker({
+        format : 'DD/MM/YYYY'
+      });
+    });
+</script>
