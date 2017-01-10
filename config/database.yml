@@ -11,7 +11,7 @@ default: &default
   database: trash_box
   pool: 5
   username: root
-  password: password
+  password: root
 
 development:
   <<: *default
