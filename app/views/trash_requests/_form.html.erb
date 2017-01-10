@@ -1,0 +1,42 @@
+<%= form_for(trash_request) do |f| %>
+  <% if trash_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(trash_request.errors.count, "error") %> prohibited this trash_request from being saved:</h2>
+
+      <ul>
+      <% trash_request.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :tr_serial_no %>
+    <%= f.text_field :tr_serial_no %>
+  </div>
+
+  <div class="field">
+    <%= f.label :request_status %>
+    <%= f.text_field :request_status %>
+  </div>
+
+  <div class="field">
+    <%= f.label :trash_request_date %>
+    <%= f.date_select :trash_request_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :request_generate_date %>
+    <%= f.text_field :request_generate_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :total_amount %>
+    <%= f.text_field :total_amount %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

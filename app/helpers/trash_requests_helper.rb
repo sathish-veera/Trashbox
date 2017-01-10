@@ -1,0 +1,2 @@
+module TrashRequestsHelper
+end

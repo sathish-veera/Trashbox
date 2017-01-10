@@ -1,0 +1,2 @@
+json.extract! trash_request, :id, :tr_serial_no, :request_status, :trash_request_date, :request_generate_date, :total_amount, :created_at, :updated_at
+json.url trash_request_url(trash_request, format: :json)

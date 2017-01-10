@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tr serial no:</strong>
+  <%= @trash_request.tr_serial_no %>
+</p>
+
+<p>
+  <strong>Request status:</strong>
+  <%= @trash_request.request_status %>
+</p>
+
+<p>
+  <strong>Trash request date:</strong>
+  <%= @trash_request.trash_request_date %>
+</p>
+
+<p>
+  <strong>Request generate date:</strong>
+  <%= @trash_request.request_generate_date %>
+</p>
+
+<p>
+  <strong>Total amount:</strong>
+  <%= @trash_request.total_amount %>
+</p>
+
+<%= link_to 'Edit', edit_trash_request_path(@trash_request) %> |
+<%= link_to 'Back', trash_requests_path %>

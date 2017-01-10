@@ -1,0 +1,1 @@
+json.array! @trash_requests, partial: 'trash_requests/trash_request', as: :trash_request

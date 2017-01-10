@@ -1,0 +1,1 @@
+json.partial! "trash_requests/trash_request", trash_request: @trash_request
