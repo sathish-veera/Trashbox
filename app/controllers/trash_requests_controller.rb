@@ -15,6 +15,7 @@ class TrashRequestsController < ApplicationController
   # GET /trash_requests/new
   def new
     @trash_request = TrashRequest.new
+    @items = Item.all
   end
 
   # GET /trash_requests/1/edit

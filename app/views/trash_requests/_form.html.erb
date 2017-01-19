@@ -14,26 +14,8 @@
 <!-- demo code - remote part -->
 
 <div class="row">
-  <div class="col-md-6">
-    <div class="row">
-    <div class="col-md-3">
-      <img src="/assets/computer.jpg" class="img-rounded" alt="Cinque Terre" width="120" height="120">
-    </div>
-     <div class="col-md-3">
-      <img src="/assets/books.jpg" class="img-rounded" alt="Cinque Terre" width="120" height="120">
-    </div>
-  <div class="col-md-3">
-      <img src="/assets/bottles.jpg" class="img-rounded" alt="Cinque Terre" width="120" height="120">
-    </div>
 
-     <div class="col-md-3">
-      <img src="/assets/papers.jpg" class="img-rounded" alt="Cinque Terre" width="120" height="120">
-    </div>
-
-
-  </div>
-  </div>
-   <div class="col-md-6">
+   <div class="col-md-10">
      
      <table class="table table-striped table-bordered">
     <thead>
@@ -45,26 +27,14 @@
       </tr>
     </thead>
     <tbody>
+        <% for item in @items %>
       <tr>
-        <td>Books</td>
-        <td>12/kg</td>
-        <td> <input type="text" style="width:120px"></td>
-        <td></td>
+        <td><%= image_tag "/Items/#{item.item_name}.jpg", size: "50x50" %>&nbsp;<%= item.item_name %>&nbsp;<%= check_box item.id, "item" %></td>
+        <td><%= item.unit_price %></td>
+        <td> <%= text_field item.id,"rough_unit", onkeyup: "calculate_rough_amt(this,#{item.unit_price})" %></td>
+        <td id="<%= item.id %>_total_amt">0</td>
       </tr>
-      <tr>
-       <td>computers</td>
-        <td>30</td>
-        <td> <input type="text" style="width:120px"></td>
-        <td></td>
-
-      </tr>
-      <tr>
-      <td>Glasses</td>
-        <td>15/kg</td>
-        <td> <input type="text" style="width:120px"></td>
-        <td></td>
-
-      </tr>
+        <% end %>
     </tbody>
   </table>
 
@@ -103,3 +73,10 @@
     <%= f.submit %>
   </div>
 <% end %>
+<script>
+  function calculate_rough_amt(quantity,rough_amt) {
+      var total_amt = (quantity.value * rough_amt);
+      var row_id = parseInt(quantity.id)
+      $("#" + row_id + "_total_amt").html(total_amt)
+  }
+</script>
