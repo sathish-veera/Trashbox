@@ -17,3 +17,16 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require_tree .
+
+var date = new Date();
+var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+function calculate_rough_amt(quantity,row_id,rough_amt) {
+    var total_amt = (quantity.value * rough_amt);
+    $("#" + row_id + "_total_amt").html(total_amt)
+}
+$(document).ready(function() {
+    $('#trash_request_date').datetimepicker({
+        format: "DD/MM/YYYY",
+        minDate: today
+    });
+})

@@ -17,10 +17,11 @@
 
    <div class="col-md-10">
      
-     <table class="table table-striped table-bordered">
+     <table class="table">
     <thead>
       <tr>
         <th>Item Name</th>
+        <th>Select/DeSelect</th>
         <th>Unit price</th>
         <th>Wastage Unit</th>
         <th>Amount</th>
@@ -29,54 +30,41 @@
     <tbody>
         <% for item in @items %>
       <tr>
-        <td><%= image_tag "/Items/#{item.item_name}.jpg", size: "50x50" %>&nbsp;<%= item.item_name %>&nbsp;<%= check_box item.id, "item" %></td>
+        <td><%= image_tag "/Items/#{item.item_name}.jpg", size: "50x50" %>&nbsp;<%= item.item_name %>
+        </td>
+        <td>
+          <%= check_box "item", item.id, class: "cmn-toggle cmn-toggle-round" %><label for="item_<%= item.id %>"></label>
+        </td>
         <td><%= item.unit_price %></td>
-        <td> <%= text_field item.id,"rough_unit", onkeyup: "calculate_rough_amt(this,#{item.unit_price})" %></td>
+        <td> <%= text_field "rough_unit",item.id, onkeyup: "calculate_rough_amt(this,#{item.id},#{item.unit_price})", class: "form-control" %></td>
         <td id="<%= item.id %>_total_amt">0</td>
       </tr>
         <% end %>
     </tbody>
   </table>
-
-
    </div>
 </div>
-
-<!--end-->
-
-  <div class="field">
-    <%= f.label :tr_serial_no %>
-    <%= f.text_field :tr_serial_no %>
+<div class="row">
+  <div class='col-sm-4'>
+    <div class="form-group">
+      <div class='input-group date' id='trash_request_date'>
+        <input type='text' class="form-control" placeholder="Trash Request Date" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :request_status %>
-    <%= f.text_field :request_status %>
-  </div>
-
-  <div class="field">
-    <%= f.label :trash_request_date %>
-    <%= f.date_select :trash_request_date %>
-  </div>
-
-  <div class="field">
-    <%= f.label :request_generate_date %>
-    <%= f.text_field :request_generate_date %>
-  </div>
-
-  <div class="field">
-    <%= f.label :total_amount %>
-    <%= f.text_field :total_amount %>
-  </div>
-
+</div>
+    </br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit",:class => "btn btn-success btn" %>
   </div>
 <% end %>
+
 <script>
-  function calculate_rough_amt(quantity,rough_amt) {
-      var total_amt = (quantity.value * rough_amt);
-      var row_id = parseInt(quantity.id)
-      $("#" + row_id + "_total_amt").html(total_amt)
-  }
+
 </script>
+<style>
+
+</style>
