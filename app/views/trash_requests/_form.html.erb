@@ -1,70 +1,74 @@
 <%= form_for(trash_request) do |f| %>
-  <% if trash_request.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(trash_request.errors.count, "error") %> prohibited this trash_request from being saved:</h2>
+    <div class="row">
 
-      <ul>
-      <% trash_request.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+      <div class="col-md-10">
+
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Item Name</th>
+            <th>Select/DeSelect</th>
+            <th>Unit price</th>
+            <th>Wastage Unit</th>
+            <th>Amount</th>
+          </tr>
+          </thead>
+          <tbody>
+          <%= f.fields_for(:trash_request_items) do |tri| %>
+          <% trash_request_item_ids = f.object.trash_request_items.pluck(:item_id) %>
+          <% for item in @items %>
+              <% item_id = item.id.to_s %>
+              <tr>
+                <td><%= image_tag "/Items/#{item.item_name}.jpg", size: "50x50" %>&nbsp;<%= item.item_name %>
+                </td>
+                <td>
+                  <% if trash_request_item_ids.include?(item.id) %>
+                      <%= tri.check_box "#{item_id}[is_checked]", class: "cmn-toggle cmn-toggle-round", checked: true %><label for="<%="trash_request_trash_request_items_#{item_id}[is_checked]" %>"></label>
+                  <%else%>
+                    <%= tri.check_box "#{item_id}[is_checked]", class: "cmn-toggle cmn-toggle-round" %><label for="<%="trash_request_trash_request_items_#{item_id}[is_checked]" %>"></label>
+                  <%end%>
+                </td>
+                <td><%= item.unit_price %></td>
+                <% if trash_request_item_ids.include?(item.id) %>
+                    <% rough_unit =  f.object.trash_request_items.select{|a| a.item_id == item.id}.first.rough_unit %>
+                    <td> <%= tri.text_field "#{item_id}[rough_unit]", onkeyup: "calculate_rough_amt(this,#{item.id},#{item.unit_price})", class: "form-control", value: rough_unit %></td>
+                <%else%>
+                    <td> <%= tri.text_field "#{item_id}[rough_unit]", onkeyup: "calculate_rough_amt(this,#{item.id},#{item.unit_price})", class: "form-control" %></td>
+                <%end%>
+                <td id="<%= item.id %>_total_amt">0</td>
+              </tr>
+          <% end %>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
-  <% end %>
-
-<!-- demo code - remote part -->
-
-<div class="row">
-
-   <div class="col-md-10">
-     
-     <table class="table">
-    <thead>
-      <tr>
-        <th>Item Name</th>
-        <th>Select/DeSelect</th>
-        <th>Unit price</th>
-        <th>Wastage Unit</th>
-        <th>Amount</th>
-      </tr>
-    </thead>
-    <tbody>
-        <% for item in @items %>
-      <tr>
-        <td><%= image_tag "/Items/#{item.item_name}.jpg", size: "50x50" %>&nbsp;<%= item.item_name %>
-        </td>
-        <td>
-          <%= check_box "item", item.id, class: "cmn-toggle cmn-toggle-round" %><label for="item_<%= item.id %>"></label>
-        </td>
-        <td><%= item.unit_price %></td>
-        <td> <%= text_field "rough_unit",item.id, onkeyup: "calculate_rough_amt(this,#{item.id},#{item.unit_price})", class: "form-control" %></td>
-        <td id="<%= item.id %>_total_amt">0</td>
-      </tr>
-        <% end %>
-    </tbody>
-  </table>
-   </div>
-</div>
-<div class="row">
-  <div class='col-sm-4'>
-    <div class="form-group">
-      <div class='input-group date' id='trash_request_date'>
-        <input type='text' class="form-control" placeholder="Trash Request Date" />
+    <div class="row">
+      <div class='col-sm-4'>
+        <div class="form-group">
+          <div class='input-group date' id='trash_request_date'>
+            <%= f.text_field :trash_request_date , placeholder: "Trash Request Date", class: "form-control",value: (f.object.trash_request_date.strftime("%d/%m/%Y") rescue nil) %>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
     </br>
-  <div class="actions">
-    <%= f.submit "Submit",:class => "btn btn-success btn" %>
-  </div>
+    <div class="actions">
+      <%= f.submit "Submit",:class => "btn btn-success btn" %>
+    </div>
 <% end %>
 
 <script>
+    var date = new Date();
+    var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    $('#trash_request_date').datetimepicker({
+        format: "DD/MM/YYYY",
+        minDate: today
+    });
+    $(window).load(function() {
 
+    });
 </script>
-<style>
-
-</style>

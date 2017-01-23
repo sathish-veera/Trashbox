@@ -1,29 +1,50 @@
-<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+  <p id="notice"><%= notice %></p>
+  <p>
+    <strong>Tr serial no:</strong>
+    <%= @trash_request.tr_serial_no %>
+  </p>
 
-<p>
-  <strong>Tr serial no:</strong>
-  <%= @trash_request.tr_serial_no %>
-</p>
+  <p>
+    <strong>Request status:</strong>
+    <%= @trash_request.request_status %>
+  </p>
 
-<p>
-  <strong>Request status:</strong>
-  <%= @trash_request.request_status %>
-</p>
+  <p>
+    <strong>Trash request date:</strong>
+    <%= @trash_request.trash_request_date.strftime("%d/%m/%Y") %>
+  </p>
 
-<p>
-  <strong>Trash request date:</strong>
-  <%= @trash_request.trash_request_date %>
-</p>
+  <p>
+    <strong>Request generate date:</strong>
+    <%= @trash_request.request_generate_date.strftime("%d/%m/%Y") %>
+  </p>
 
-<p>
-  <strong>Request generate date:</strong>
-  <%= @trash_request.request_generate_date %>
-</p>
+  <p>
+    <strong>Total amount:</strong>
+    <%= @trash_request.total_amount %>
+  </p>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>Item name</th>
+      <th>Unit price</th>
+      <th>Rough Unit</th>
+      <th>Rough Amount</th>
+    </tr>
+    </thead>
 
-<p>
-  <strong>Total amount:</strong>
-  <%= @trash_request.total_amount %>
-</p>
-
-<%= link_to 'Edit', edit_trash_request_path(@trash_request) %> |
-<%= link_to 'Back', trash_requests_path %>
+    <tbody>
+    <% @trash_request.trash_request_items.each do |item| %>
+        <tr>
+          <td><%= item.item.item_name %></td>
+          <td><%= item.item.unit_price %></td>
+          <td><%= item.rough_unit %></td>
+          <td><%= item.rough_amount %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'Edit', edit_trash_request_path(@trash_request), class: 'btn btn-warning' %>
+  <%= link_to 'Back', trash_requests_path, class: 'btn btn-danger' %>
+</div>

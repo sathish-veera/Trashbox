@@ -1,8 +1,7 @@
-<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+  <h2>Trash Requests</h2>
 
-<h1>Trash Requests</h1>
-
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Tr serial no</th>
@@ -10,7 +9,7 @@
       <th>Trash request date</th>
       <th>Request generate date</th>
       <th>Total amount</th>
-      <th colspan="3"></th>
+      <th colspan="3">Options</th>
     </tr>
   </thead>
 
@@ -19,8 +18,8 @@
       <tr>
         <td><%= trash_request.tr_serial_no %></td>
         <td><%= trash_request.request_status %></td>
-        <td><%= trash_request.trash_request_date %></td>
-        <td><%= trash_request.request_generate_date %></td>
+        <td><%= trash_request.trash_request_date.strftime("%d/%m/%Y") %></td>
+        <td><%= trash_request.request_generate_date.strftime("%d/%m/%Y") %></td>
         <td><%= trash_request.total_amount %></td>
         <td><%= link_to 'Show', trash_request %></td>
         <td><%= link_to 'Edit', edit_trash_request_path(trash_request) %></td>
@@ -33,3 +32,4 @@
 <br>
 
 <%= link_to 'New Trash Request', new_trash_request_path %>
+</div>

@@ -20,17 +20,17 @@ class TrashRequestsController < ApplicationController
 
   # GET /trash_requests/1/edit
   def edit
+    @items = Item.all
   end
 
   # POST /trash_requests
   # POST /trash_requests.json
   def create
-    @trash_request = TrashRequest.new(trash_request_params)
-
+    trash_request = TrashRequest.create_record(trash_request_params)
     respond_to do |format|
-      if @trash_request.save
-        format.html { redirect_to @trash_request, notice: 'Trash request was successfully created.' }
-        format.json { render :show, status: :created, location: @trash_request }
+      if trash_request
+        format.html { redirect_to trash_request, notice: 'Trash request was successfully created.' }
+        format.json { render :show, status: :created, location: trash_request }
       else
         format.html { render :new }
         format.json { render json: @trash_request.errors, status: :unprocessable_entity }
@@ -41,13 +41,14 @@ class TrashRequestsController < ApplicationController
   # PATCH/PUT /trash_requests/1
   # PATCH/PUT /trash_requests/1.json
   def update
+    trash_request = TrashRequest.update_record(trash_request_params,params[:id])
     respond_to do |format|
-      if @trash_request.update(trash_request_params)
-        format.html { redirect_to @trash_request, notice: 'Trash request was successfully updated.' }
-        format.json { render :show, status: :ok, location: @trash_request }
+      if trash_request
+        format.html { redirect_to trash_request, notice: 'Trash request was successfully updated.' }
+        format.json { render :show, status: :ok, location: trash_request }
       else
         format.html { render :edit }
-        format.json { render json: @trash_request.errors, status: :unprocessable_entity }
+        format.json { render json:  trash_request.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -70,6 +71,6 @@ class TrashRequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trash_request_params
-      params.require(:trash_request).permit(:tr_serial_no, :request_status, :trash_request_date, :request_generate_date, :total_amount)
+      params.require(:trash_request).permit(:trash_request_date,:trash_request_items => [:is_checked,:rough_unit])
     end
 end
