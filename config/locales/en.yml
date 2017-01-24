@@ -21,3 +21,7 @@
 
 en:
   hello: "Hello world"
+
+  active_admin:
+    powered_by: "Copyright 2017@Trash Box."
+
