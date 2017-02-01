@@ -1,24 +1,22 @@
-ActiveAdmin.register TrashRequest do
-	menu label: "Trash Requests List",priority: 1
-
-  actions :all, except: [:new,:destroy]
-
-  filter :tr_serial_no
-  filter :request_status
-  filter :trash_request_date
+ActiveAdmin.register User do
+  actions :all, except: [:edit, :destroy]
+  menu label: "Users Login Report",priority: 2
+  
+  filter :email
+  filter :is_admin
+  filter :created_at
 
   scope :all, default: true
-  scope("Today Trash Request list") { |scope| scope.where(trash_request_date: (Date.today.beginning_of_day..Date.today.end_of_day)) }
+  scope("Today signup list") { |scope| scope.where(created_at: (Date.today.beginning_of_day..Date.today.end_of_day)) }
 
 
  index do
    id_column
-    column :tr_serial_no
-	column :request_status
-    column :trash_request_date
-	column :total_amount
+    column :email
+	column :created_at
     actions
   end
+
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #

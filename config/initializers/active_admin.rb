@@ -83,10 +83,12 @@ ActiveAdmin.setup do |config|
   #
   # Active Admin will associate actions with the current
   # user performing them.
+
+
   #
   # This setting changes the method which Active Admin calls
   # (within the application controller) to return the currently logged in user.
-  # config.current_user_method = :current_admin_user
+   config.current_user_method = :current_user
 
   # == Logging Out
   #
@@ -98,13 +100,13 @@ ActiveAdmin.setup do |config|
   # will call the method to return the path.
   #
   # Default:
-  config.logout_link_path = :destroy_admin_user_session_path
+    config.logout_link_path = :destroy_user_session_path
 
   # This setting changes the http method used when rendering the
   # link. For example :get, :delete, :put, etc..
   #
   # Default:
-  # config.logout_link_method = :get
+   config.logout_link_method = :delete
 
   # == Root
   #
@@ -208,12 +210,15 @@ ActiveAdmin.setup do |config|
   #
   # To change the default utility navigation to show a link to your website & a logout btn
   #
-  #   config.namespace :admin do |admin|
-  #     admin.build_menu :utility_navigation do |menu|
-  #       menu.add label: "My Great Website", url: "http://www.mygreatwebsite.com", html_options: { target: :blank }
-  #       admin.add_logout_button_to_menu menu
-  #     end
-  #   end
+  
+  config.namespace :admin do |admin|
+    admin.build_menu :utility_navigation do |menu|
+     # admin.add_current_user_to_menu  menu
+      admin.add_logout_button_to_menu menu
+    end
+  end
+
+
   #
   # If you wanted to add a static menu item to the default menu provided:
   #
@@ -222,6 +227,8 @@ ActiveAdmin.setup do |config|
   #       menu.add label: "My Great Website", url: "http://www.mygreatwebsite.com", html_options: { target: :blank }
   #     end
   #   end
+
+  config.download_links = [:csv]
 
   # == Download Links
   #

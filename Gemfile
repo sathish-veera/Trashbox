@@ -67,6 +67,8 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 
 gem 'activeadmin', '~> 1.0.0.pre4'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'active_skin'
+
 
 gem 'jquery-ui-rails', '~> 4.2.1'
 gem 'pg'
