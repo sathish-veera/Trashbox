@@ -71,6 +71,6 @@ class TrashRequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trash_request_params
-      params.require(:trash_request).permit(:trash_request_date,:trash_request_items => [:is_checked,:rough_unit])
+      params.require(:trash_request).permit(:trash_request_date,:trash_request_items => [:is_checked,:rough_unit,:rough_amount])
     end
 end

@@ -35,6 +35,7 @@
                 <%else%>
                     <td> <%= tri.text_field "#{item_id}[rough_unit]", onkeyup: "calculate_rough_amt(this,#{item.id},#{item.unit_price})", class: "form-control" %></td>
                 <%end%>
+                <%= tri.hidden_field "#{item_id}[rough_amount]", value: "345",class: "rough_amt_" + item.id.to_s %>
                 <td id="<%= item.id %>_total_amt">0</td>
               </tr>
           <% end %>

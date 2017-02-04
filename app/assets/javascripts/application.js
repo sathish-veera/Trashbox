@@ -22,4 +22,5 @@
 function calculate_rough_amt(quantity,row_id,rough_amt) {
     var total_amt = (quantity.value * rough_amt);
     $("#" + row_id + "_total_amt").html(total_amt)
+    $(".rough_amt_" + row_id).val(total_amt)
 }
