@@ -12,12 +12,12 @@
 
   <p>
     <strong>Trash request date:</strong>
-    <%= @trash_request.trash_request_date.strftime("%d/%m/%Y") %>
+    <%= @trash_request.trash_request_date.strftime("%d/%m/%Y") rescue nil %>
   </p>
 
   <p>
     <strong>Request generate date:</strong>
-    <%= @trash_request.request_generate_date.strftime("%d/%m/%Y") %>
+    <%= @trash_request.request_generate_date.strftime("%d/%m/%Y") rescue nil %>
   </p>
 
   <p>

@@ -18,12 +18,11 @@
       <tr>
         <td><%= trash_request.tr_serial_no %></td>
         <td><%= trash_request.request_status %></td>
-        <td><%= trash_request.trash_request_date.strftime("%d/%m/%Y") %></td>
-        <td><%= trash_request.request_generate_date.strftime("%d/%m/%Y") %></td>
+        <td><%= trash_request.trash_request_date.strftime("%d/%m/%Y") rescue nil %></td>
+        <td><%= trash_request.request_generate_date.strftime("%d/%m/%Y") rescue nil %></td>
         <td><%= trash_request.total_amount %></td>
         <td><%= link_to 'Show', trash_request %></td>
         <td><%= link_to 'Edit', edit_trash_request_path(trash_request) %></td>
-        <td><%= link_to 'Destroy', trash_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

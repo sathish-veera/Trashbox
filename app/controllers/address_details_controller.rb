@@ -1,6 +1,11 @@
 class AddressDetailsController < ApplicationController
+	before_action :check_address_detail, only: :index
   def index
   	@profile = current_user.address_detail
+  end
+
+  def new
+  	@profile = AddressDetail.new
   end
 
   def create

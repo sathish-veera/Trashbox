@@ -3,9 +3,16 @@ class TrashRequest < ApplicationRecord
  has_one :address_detail, as: :addressable
  has_many :trash_request_items
 
-  def self.create_record(params)
+  def self.create_record(params,current_user)
     trash_request = self.new(tr_serial_no: self.generate_serial_no,request_status: "New",trash_request_date: params[:trash_request_date],request_generate_date: Time.now )
     trash_request.save!
+    if params[:is_new_address] == 'true'
+      address_detail = trash_request.build_address_detail(params[:address_detail])
+      address_detail.save!
+    else
+      address_detail = current_user.address_detail
+    end 
+    trash_request.update(address_detail_id: address_detail.id)
     for item in params[:trash_request_items]
      if  params[:trash_request_items][item][:is_checked] == "1"
       trash_request_item = TrashRequestItem.new(trash_request_id: trash_request.id, rough_unit: params[:trash_request_items][item][:rough_unit],item_id: item, rough_amount: params[:trash_request_items][item][:rough_amount])

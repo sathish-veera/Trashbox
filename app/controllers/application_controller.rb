@@ -10,4 +10,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+def check_address_detail
+  if current_user.address_detail.present?
+    return true
+  else
+    flash[:error] = "Please create Profile"
+    redirect_to new_address_detail_path
+  end
+end
+
 end

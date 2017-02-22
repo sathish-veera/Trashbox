@@ -1,19 +1,20 @@
-<div class="jumbotron">
+<% if @profile %>
+	<div class="jumbotron">
+	<h2>Profile</h2>
+	<div>
+	  <%= @profile.first_name %>&nbsp;<%= @profile.last_name %>
+	</div>
+	<div>
+	  <%= @profile.address_line1 %>,<%= @profile.address_line2 %>
+	</div>
+	<div>
+	  <%= @profile.city %>,<%= @profile.state %>,<%= @profile.zip_code %>
+	</div>
+	<div>
+	  <%= @profile.mobile_no %>,<%= @profile.land_line_no %>
+	<br>
 
-<h2>Profile</h2>
-
-<div>
-  <%= @profile.first_name %>&nbsp;<%= @profile.last_name %>
-</div>
-<div>
-  <%= @profile.address_line1 %>,<%= @profile.address_line2 %>
-</div>
-<div>
-  <%= @profile.city %>,<%= @profile.state %>,<%= @profile.zip_code %>
-</div>
-<div>
-  <%= @profile.mobile_no %>,<%= @profile.land_line_no %>
-<br>
-
-<%= link_to 'Edit', edit_address_detail_path(@profile.id), class: 'btn btn-mini btn-info' %>
-</div>
+	<%= link_to 'Edit', edit_address_detail_path(@profile.id), class: 'btn btn-mini btn-info' %>
+	</div>
+<% end %>
+<%= link_to 'New', new_address_detail_path, class: 'btn btn-mini btn-success' %>

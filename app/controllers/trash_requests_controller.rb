@@ -1,5 +1,6 @@
 class TrashRequestsController < ApplicationController
   before_action :set_trash_request, only: [:show, :edit, :update, :destroy]
+  before_action :check_address_detail, only: :create
 
   # GET /trash_requests
   # GET /trash_requests.json
@@ -26,7 +27,7 @@ class TrashRequestsController < ApplicationController
   # POST /trash_requests
   # POST /trash_requests.json
   def create
-    trash_request = TrashRequest.create_record(trash_request_params)
+    trash_request = TrashRequest.create_record(trash_request_params,current_user)
     respond_to do |format|
       if trash_request
         format.html { redirect_to trash_request, notice: 'Trash request was successfully created.' }
@@ -69,8 +70,10 @@ class TrashRequestsController < ApplicationController
       @trash_request = TrashRequest.find(params[:id])
     end
 
+
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def trash_request_params
-      params.require(:trash_request).permit(:trash_request_date,:trash_request_items => [:is_checked,:rough_unit,:rough_amount],:address_detail => [:first_name])
+      params.require(:trash_request).permit(:trash_request_date,:is_new_address,:trash_request_items => [:is_checked,:rough_unit,:rough_amount],:address_detail => [:first_name,:last_name,:address_line1,:address_line2,:city,:land_line_no,:mobile_no,:state,:zip_code])
     end
 end
