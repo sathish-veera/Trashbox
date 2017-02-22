@@ -1,0 +1,38 @@
+<%= form_for(@profile) do |f| %>
+    <div class="row">
+      <div class="col-md-6">
+            <div class="form-group">
+              <%= f.text_field :first_name, placeholder: "Name", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :last_name, placeholder: "Last Name", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :address_line1, placeholder: "Address Line 1", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :address_line2, placeholder: "Address Line 2", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :city, placeholder: "City", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :land_line_no, placeholder: "Phone Number", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :mobile_no, placeholder: "Mobile Number", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :state, placeholder: "State", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :zip_code, placeholder: "Pin Code", class: "form-control" %>
+            </div>
+      </div>
+    </div>
+    </br>
+    <div class="actions">
+      <%= submit_tag "Submit",:class => "btn btn-success btn" %>
+    </div>
+<% end %>
+

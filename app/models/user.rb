@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :trash_requests
+  has_one :address_detail, as: :addressable
 end

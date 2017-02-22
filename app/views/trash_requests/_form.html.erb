@@ -1,7 +1,7 @@
 <%= form_for(trash_request) do |f| %>
     <div class="row">
 
-      <div class="col-md-10">
+      <div class="col-md-8">
 
         <table class="table">
           <thead>
@@ -43,6 +43,59 @@
           </tbody>
         </table>
       </div>
+      <div class="col-sm-4">
+        <div id="user_address_div">
+        <h4>Address Details</h4>
+        <div>
+          <%= current_user.address_detail.first_name %>&nbsp;<%= current_user.address_detail.last_name %>
+        </div>
+        <div>
+          <%= current_user.address_detail.address_line1 %>,<%= current_user.address_detail.address_line2 %>
+        </div>
+        <div>
+          <%= current_user.address_detail.city %>,<%= current_user.address_detail.state %>,<%= current_user.address_detail.zip_code %>
+        </div>
+        <div>
+          <%= current_user.address_detail.mobile_no %>,<%= current_user.address_detail.land_line_no %>
+        </div>
+        <br/>
+        <div>
+        <%= link_to "Would you like to choose different Address ?", "#", data: { turbolinks: false }, id: "address_link" %></div>
+        </div>
+        <div id="new_address" class="hide">
+          <%= fields_for :address_detail do |ad| %>
+            <div class="form-group">
+              <%= ad.text_field :first_name, placeholder: "Name", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= ad.text_field :last_name, placeholder: "Last Name", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= ad.text_field :address_line1, placeholder: "Address Line 1", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= ad.text_field :address_line2, placeholder: "Address Line 2", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= ad.text_field :city, placeholder: "City", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= ad.text_field :land_line_no, placeholder: "Phone Number", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= ad.text_field :mobile_no, placeholder: "Mobile Number", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= ad.text_field :state, placeholder: "State", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= ad.text_field :zip_code, placeholder: "Pin Code", class: "form-control" %>
+            </div>
+            <%= ad.hidden_field :is_new_address, value: 'false' %>
+          <% end %>
+          <%= link_to "Cancel Address", "#", data: { turbolinks: false }, id: "reset_address" %>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class='col-sm-4'>
@@ -69,7 +122,14 @@
         format: "DD/MM/YYYY",
         minDate: today
     });
-    $(window).load(function() {
-
-    });
+    $("#address_link").click(function() {
+      $("#user_address_div").hide();
+      $("#new_address").removeClass('hide');
+      $("#address_detail_is_new_address").val('true');
+    })
+    $("#reset_address").click(function() {
+      $("#user_address_div").show();
+      $("#new_address").addClass('hide');
+      $("#address_detail_is_new_address").val('false');
+    })
 </script>
