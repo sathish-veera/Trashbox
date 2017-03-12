@@ -17,11 +17,13 @@ class TrashRequestsController < ApplicationController
   def new
     @trash_request = TrashRequest.new
     @items = Item.all
+    @areas = Area.all
   end
 
   # GET /trash_requests/1/edit
   def edit
     @items = Item.all
+    @areas = Area.all
   end
 
   # POST /trash_requests
@@ -74,6 +76,6 @@ class TrashRequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trash_request_params
-      params.require(:trash_request).permit(:trash_request_date,:is_new_address,:trash_request_items => [:is_checked,:rough_unit,:rough_amount],:address_detail => [:first_name,:last_name,:address_line1,:address_line2,:city,:land_line_no,:mobile_no,:state,:zip_code])
+      params.require(:trash_request).permit(:trash_request_date,:is_new_address,:trash_request_items => [:is_checked,:rough_unit,:rough_amount],:address_detail => [:first_name,:last_name,:address_line1,:address_line2,:city,:land_line_no,:mobile_no,:state,:zip_code,:area_id,:landmark])
     end
 end

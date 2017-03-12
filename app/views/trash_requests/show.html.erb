@@ -24,6 +24,24 @@
     <strong>Total amount:</strong>
     <%= @trash_request.total_amount %>
   </p>
+  <p>
+    <strong>Delivery Address Details</strong>
+  <div>
+    <%= @trash_request.address_detail.first_name %>&nbsp;<%= @trash_request.address_detail.last_name %>
+  </div>
+  <div>
+    <%= @trash_request.address_detail.address_line1 %>,<%= @trash_request.address_detail.address_line2 %>
+  </div>
+  <div>
+    <%= @trash_request.address_detail.area.area_name %>,<%= @trash_request.address_detail.landmark %>
+  </div>
+  <div>
+    <%= @trash_request.address_detail.city %>,<%= @trash_request.address_detail.state %>,<%= @trash_request.address_detail.zip_code %>
+  </div>
+  <div>
+    <%= @trash_request.address_detail.mobile_no %>,<%= @trash_request.address_detail.land_line_no %>
+  </div>
+  </p>
   <table class="table table-hover">
     <thead>
     <tr>

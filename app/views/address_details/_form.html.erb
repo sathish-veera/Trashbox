@@ -14,6 +14,13 @@
               <%= f.text_field :address_line2, placeholder: "Address Line 2", class: "form-control" %>
             </div>
             <div class="form-group">
+              Area: 
+              <%= f.select :area_id, @areas.map {|c| [c.area_name, c.id, {:'pincode' => c.pincode}]}, prompt: true %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :landmark, placeholder: "landmark", class: "form-control", required: true %>
+            </div>
+            <div class="form-group">
               <%= f.text_field :city, placeholder: "City", class: "form-control", required: true %>
             </div>
             <div class="form-group">
@@ -26,7 +33,7 @@
               <%= f.text_field :state, placeholder: "State", class: "form-control", required: true %>
             </div>
             <div class="form-group">
-              <%= f.text_field :zip_code, placeholder: "Pin Code", class: "form-control", required: true %>
+              <%= f.text_field :zip_code, placeholder: "Pin Code", class: "form-control", required: true, readonly: true %>
             </div>
       </div>
     </div>
@@ -35,4 +42,9 @@
       <%= submit_tag "Submit",:class => "btn btn-success btn" %>
     </div>
 <% end %>
-
+<script>
+  $("#address_detail_area_id").change(function() {
+    var pincode = $("#address_detail_area_id :selected").attr('pincode');
+    $("#address_detail_zip_code").val(pincode)
+  })
+</script>

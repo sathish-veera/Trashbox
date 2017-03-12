@@ -80,6 +80,13 @@
               <%= ad.text_field :address_line2, placeholder: "Address Line 2", class: "form-control" %>
             </div>
             <div class="form-group">
+              Area: 
+              <%= ad.select :area_id, @areas.map {|c| [c.area_name, c.id, {:'pincode' => c.pincode}]}, prompt: true %>
+            </div>
+            <div class="form-group">
+              <%= ad.text_field :landmark, placeholder: "landmark", class: "form-control", required: true %>
+            </div>
+            <div class="form-group">
               <%= ad.text_field :city, placeholder: "City", class: "form-control" %>
             </div>
             <div class="form-group">
@@ -92,7 +99,7 @@
               <%= ad.text_field :state, placeholder: "State", class: "form-control" %>
             </div>
             <div class="form-group">
-              <%= ad.text_field :zip_code, placeholder: "Pin Code", class: "form-control" %>
+              <%= ad.text_field :zip_code, placeholder: "Pin Code", class: "form-control" , readonly: true%>
             </div>
             
           <% end %>
@@ -134,5 +141,9 @@
       $("#user_address_div").show();
       $("#new_address").addClass('hide');
       $("#trash_request_is_new_address").val('false');
+    })
+    $("#trash_request_address_detail_area_id").change(function() {
+      var pincode = $("#trash_request_address_detail_area_id :selected").attr('pincode');
+      $("#trash_request_address_detail_zip_code").val(pincode)
     })
 </script>

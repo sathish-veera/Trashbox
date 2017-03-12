@@ -6,6 +6,7 @@ class AddressDetailsController < ApplicationController
 
   def new
   	@profile = AddressDetail.new
+  	@areas = Area.all
   end
 
   def create
@@ -23,6 +24,7 @@ class AddressDetailsController < ApplicationController
 
   def edit
   	@profile = AddressDetail.find_by_id(params[:id])
+  	@areas = Area.all
   end
 
   def update
@@ -34,6 +36,6 @@ class AddressDetailsController < ApplicationController
   private
 
   def profiles_params
-  	params.require(:address_detail).permit(:first_name,:last_name,:address_line1,:address_line2,:city,:land_line_no, :mobile_no,:state,:zip_code)
+  	params.require(:address_detail).permit(:first_name,:last_name,:address_line1,:address_line2,:city,:land_line_no, :mobile_no,:state,:zip_code,:area_id,:landmark)
   end
 end
