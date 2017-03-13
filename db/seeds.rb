@@ -19,7 +19,7 @@ User.create! do |r|
 	r.email      = 'admin@trashbox.com'
 	r.password   = 'admin@123'
 	r.is_admin = true
-# end
+end
 
 #Area seed
 puts "Area Seed Start"
